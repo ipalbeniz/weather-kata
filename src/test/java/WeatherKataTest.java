@@ -4,7 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Optional;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.hamcrest.CoreMatchers.is;
@@ -14,7 +15,6 @@ public class WeatherKataTest {
 
     private static final Forecast FORECAST = new Forecast("http://localhost:8090");
     private static final String MADRID_CITY_NAME = "Madrid";
-    private static final int ONE_DAY = 1000 * 60 * 60 * 24;
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(options()
@@ -25,36 +25,42 @@ public class WeatherKataTest {
     @Test
     public void find_the_weather_of_today() throws IOException {
 
-        String prediction = FORECAST.predict(MADRID_CITY_NAME, null, false);
+        Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
+                .city(MADRID_CITY_NAME)
+                .build());
 
-        assertThat(prediction, is("Heavy Cloud"));
+        assertThat(prediction.get(), is("Heavy Cloud"));
     }
 
     @Test
     public void find_the_weather_of_tomorrow() throws IOException {
 
-        Date tomorrow = new Date(new Date().getTime() + ONE_DAY);
+        Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
+                .city(MADRID_CITY_NAME)
+                .date(LocalDate.now().plusDays(1))
+                .build());
 
-        String prediction = FORECAST.predict(MADRID_CITY_NAME, tomorrow, false);
-
-        assertThat(prediction, is("Light Cloud"));
+        assertThat(prediction.get(), is("Light Cloud"));
     }
 
     @Test
     public void find_the_wind_of_today() throws IOException {
 
-        String prediction = FORECAST.predict(MADRID_CITY_NAME, null, true);
+        Optional<String> prediction = FORECAST.predictWind(ForecastRequest.builder()
+                .city(MADRID_CITY_NAME)
+                .build());
 
-        assertThat(prediction, is("2.3178431052069253"));
+        assertThat(prediction.get(), is("2.3178431052069253"));
     }
 
     @Test
     public void there_is_no_prediction_for_more_than_6_days() throws IOException {
 
-        Date tomorrow = new Date(new Date().getTime() + (ONE_DAY * 6));
+        Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
+                .city(MADRID_CITY_NAME)
+                .date(LocalDate.now().plusDays(6))
+                .build());
 
-        String prediction = FORECAST.predict(MADRID_CITY_NAME, tomorrow, false);
-
-        assertThat(prediction, is(""));
+        assertThat(prediction, is(Optional.empty()));
     }
 }

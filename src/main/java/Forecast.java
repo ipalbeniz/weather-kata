@@ -6,8 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class Forecast {
 
@@ -23,15 +24,23 @@ public class Forecast {
         this.weatherApiBaseUrl = weatherApiBaseUrl;
     }
 
-    public String predict(String city, Date datetime, boolean wind) throws IOException {
+    public Optional<String> predictWind(ForecastRequest request) throws IOException {
+        return this.predict(request.getCity(), request.getDate(), true);
+    }
+
+    public Optional<String> predictWeather(ForecastRequest request) throws IOException {
+        return this.predict(request.getCity(), request.getDate(), false);
+    }
+
+    private Optional<String> predict(String city, LocalDate datetime, boolean wind) throws IOException {
         // When date is not provided we look for the current prediction
         if (datetime == null) {
-            datetime = new Date();
+            datetime = LocalDate.now();
         }
-        String format = new SimpleDateFormat("yyyy-MM-dd").format(datetime);
+        String format = datetime.format(DateTimeFormatter.ISO_LOCAL_DATE);
 
         // If there are predictions
-        if (datetime.before(new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 6)))) {
+        if (datetime.isBefore(LocalDate.now().plusDays(6))) {
 
             // Find the id of the city on metawheather
             HttpRequestFactory requestFactory
@@ -54,15 +63,15 @@ public class Forecast {
                 if (format.equals(results.getJSONObject(i).get("applicable_date").toString())) {
 //                // If we have to return the wind information
                     if (wind) {
-                        return results.getJSONObject(i).get("wind_speed").toString();
+                        return Optional.of(results.getJSONObject(i).get("wind_speed").toString());
                     } else {
-                        return results.getJSONObject(i).get("weather_state_name").toString();
+                        return Optional.of(results.getJSONObject(i).get("weather_state_name").toString());
                     }
                 }
             }
         } else {
-            return "";
+            return Optional.empty();
         }
-        return "";
+        return Optional.empty();
     }
 }
