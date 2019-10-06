@@ -10,6 +10,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Forecast {
+
+    private static final String DEFAULT_WEATHER_API_BASE_URL = "https://www.metaweather.com";
+
+    private final String weatherApiBaseUrl;
+
+    public Forecast() {
+        this(DEFAULT_WEATHER_API_BASE_URL);
+    }
+
+    public Forecast(String weatherApiBaseUrl) {
+        this.weatherApiBaseUrl = weatherApiBaseUrl;
+    }
+
     public String predict(String city, Date datetime, boolean wind) throws IOException {
         // When date is not provided we look for the current prediction
         if (datetime == null) {
@@ -24,7 +37,7 @@ public class Forecast {
             HttpRequestFactory requestFactory
                     = new NetHttpTransport().createRequestFactory();
             HttpRequest request = requestFactory.buildGetRequest(
-                    new GenericUrl("https://www.metaweather.com/api/location/search/?query=" + city));
+                    new GenericUrl(weatherApiBaseUrl + "/api/location/search/?query=" + city));
             String rawResponse = request.execute().parseAsString();
             JSONArray jsonArray = new JSONArray(rawResponse);
             String woeid = jsonArray.getJSONObject(0).get("woeid").toString();
@@ -32,7 +45,7 @@ public class Forecast {
             // Find the predictions for the city
             requestFactory = new NetHttpTransport().createRequestFactory();
             request = requestFactory.buildGetRequest(
-                    new GenericUrl("https://www.metaweather.com/api/location/" + woeid));
+                    new GenericUrl(weatherApiBaseUrl + "/api/location/" + woeid));
             rawResponse = request.execute().parseAsString();
             JSONArray results = new JSONObject(rawResponse).getJSONArray("consolidated_weather");
 

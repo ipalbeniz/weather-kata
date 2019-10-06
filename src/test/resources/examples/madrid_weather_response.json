@@ -1,0 +1,165 @@
+{
+  "consolidated_weather": [
+    {
+      "id": 6481862962708480,
+      "weather_state_name": "Heavy Cloud",
+      "weather_state_abbr": "hc",
+      "wind_direction_compass": "SSE",
+      "created": "2019-10-06T18:31:56.876562Z",
+      "applicable_date": "{{now timezone='Europe/Madrid' format='yyyy-MM-dd'}}",
+      "min_temp": 15.830000000000002,
+      "max_temp": 28.475,
+      "the_temp": 26.72,
+      "wind_speed": 2.3178431052069253,
+      "wind_direction": 167.86585570561573,
+      "air_pressure": 1019.275,
+      "humidity": 36,
+      "visibility": 11.921006323073252,
+      "predictability": 71
+    },
+    {
+      "id": 6715373388824576,
+      "weather_state_name": "Light Cloud",
+      "weather_state_abbr": "lc",
+      "wind_direction_compass": "W",
+      "created": "2019-10-06T18:31:59.889181Z",
+      "applicable_date": "{{now offset='1 days' timezone='Europe/Madrid' format='yyyy-MM-dd'}}",
+      "min_temp": 14.18,
+      "max_temp": 27.89,
+      "the_temp": 26.325000000000003,
+      "wind_speed": 1.9806300497229514,
+      "wind_direction": 271.0698769205632,
+      "air_pressure": 1018.3,
+      "humidity": 39,
+      "visibility": 13.497735723375486,
+      "predictability": 70
+    },
+    {
+      "id": 6580571008401408,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "SE",
+      "created": "2019-10-06T18:32:03.343366Z",
+      "applicable_date": "{{now offset='2 days' timezone='Europe/Madrid' format='yyyy-MM-dd'}}",
+      "min_temp": 15.68,
+      "max_temp": 27.505000000000003,
+      "the_temp": 25.965,
+      "wind_speed": 2.4623181138020627,
+      "wind_direction": 143.29779481244057,
+      "air_pressure": 1017.85,
+      "humidity": 37,
+      "visibility": 14.878733198122962,
+      "predictability": 71
+    },
+    {
+      "id": 6220475313160192,
+      "weather_state_name": "Clear",
+      "weather_state_abbr": "c",
+      "wind_direction_compass": "E",
+      "created": "2019-10-06T18:32:06.529286Z",
+      "applicable_date": "{{now offset='3 days' timezone='Europe/Madrid' format='yyyy-MM-dd'}}",
+      "min_temp": 16.165,
+      "max_temp": 27.515,
+      "the_temp": 26.27,
+      "wind_speed": 2.902302114448952,
+      "wind_direction": 79.6569810277942,
+      "air_pressure": 1017.005,
+      "humidity": 45,
+      "visibility": 15.667874612264376,
+      "predictability": 68
+    },
+    {
+      "id": 6220336062267392,
+      "weather_state_name": "Snow",
+      "weather_state_abbr": "sn",
+      "wind_direction_compass": "ENE",
+      "created": "2019-10-06T18:32:08.804409Z",
+      "applicable_date": "{{now offset='4 days' timezone='Europe/Madrid' format='yyyy-MM-dd'}}",
+      "min_temp": 15.09,
+      "max_temp": 25.405,
+      "the_temp": 23.835,
+      "wind_speed": 4.914225775693947,
+      "wind_direction": 71.80748016806456,
+      "air_pressure": 1019.9649999999999,
+      "humidity": 55,
+      "visibility": 16.651505209576076,
+      "predictability": 70
+    },
+    {
+      "id": 5726306811510784,
+      "weather_state_name": "Showers",
+      "weather_state_abbr": "s",
+      "wind_direction_compass": "E",
+      "created": "2019-10-06T18:32:12.669321Z",
+      "applicable_date": "{{now offset='5 days' timezone='Europe/Madrid' format='yyyy-MM-dd'}}",
+      "min_temp": 15.344999999999999,
+      "max_temp": 24.02,
+      "the_temp": 20.91,
+      "wind_speed": 3.1283168297144677,
+      "wind_direction": 84.5,
+      "air_pressure": 1018.17,
+      "humidity": 63,
+      "visibility": 9.999726596675416,
+      "predictability": 73
+    }
+  ],
+  "time": "2019-10-06T21:44:05.784570+02:00",
+  "sun_rise": "2019-10-06T08:15:51.196620+02:00",
+  "sun_set": "2019-10-06T19:49:33.139726+02:00",
+  "timezone_name": "LMT",
+  "parent": {
+    "title": "Spain",
+    "location_type": "Country",
+    "woeid": 23424950,
+    "latt_long": "39.894890,-2.988310"
+  },
+  "sources": [
+    {
+      "title": "BBC",
+      "slug": "bbc",
+      "url": "http://www.bbc.co.uk/weather/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Forecast.io",
+      "slug": "forecast-io",
+      "url": "http://forecast.io/",
+      "crawl_rate": 480
+    },
+    {
+      "title": "HAMweather",
+      "slug": "hamweather",
+      "url": "http://www.hamweather.com/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Met Office",
+      "slug": "met-office",
+      "url": "http://www.metoffice.gov.uk/",
+      "crawl_rate": 180
+    },
+    {
+      "title": "OpenWeatherMap",
+      "slug": "openweathermap",
+      "url": "http://openweathermap.org/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Weather Underground",
+      "slug": "wunderground",
+      "url": "https://www.wunderground.com/?apiref=fc30dc3cd224e19b",
+      "crawl_rate": 720
+    },
+    {
+      "title": "World Weather Online",
+      "slug": "world-weather-online",
+      "url": "http://www.worldweatheronline.com/",
+      "crawl_rate": 360
+    }
+  ],
+  "title": "Madrid",
+  "location_type": "City",
+  "woeid": 766273,
+  "latt_long": "40.420300,-3.705770",
+  "timezone": "Europe/Madrid"
+}

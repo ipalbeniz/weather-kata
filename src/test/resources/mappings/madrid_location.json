@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/location/search/?query=Madrid"
+  },
+  "response": {
+    "status": 200,
+    "body": "\n[{\"title\":\"Madrid\",\"location_type\":\"City\",\"woeid\":766273,\"latt_long\":\"40.420300,-3.705770\"}]",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
