@@ -3,7 +3,6 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -13,7 +12,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WeatherKataTest {
 
-    private static final Forecast FORECAST = new Forecast("http://localhost:8090");
+    private static final HttpClient HTTP_CLIENT = new HttpClientGoogle();
+    private static final Forecast FORECAST = new ForecastMetaWeather(HTTP_CLIENT, "http://localhost:8090");
     private static final String MADRID_CITY_NAME = "Madrid";
 
     @Rule
@@ -23,7 +23,7 @@ public class WeatherKataTest {
     );
 
     @Test
-    public void find_the_weather_of_today() throws IOException {
+    public void find_the_weather_of_today() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
                 .city(MADRID_CITY_NAME)
@@ -33,7 +33,7 @@ public class WeatherKataTest {
     }
 
     @Test
-    public void find_the_weather_of_tomorrow() throws IOException {
+    public void find_the_weather_of_tomorrow() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
                 .city(MADRID_CITY_NAME)
@@ -44,7 +44,7 @@ public class WeatherKataTest {
     }
 
     @Test
-    public void find_the_wind_of_today() throws IOException {
+    public void find_the_wind_of_today() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWind(ForecastRequest.builder()
                 .city(MADRID_CITY_NAME)
@@ -54,7 +54,7 @@ public class WeatherKataTest {
     }
 
     @Test
-    public void there_is_no_prediction_for_more_than_6_days() throws IOException {
+    public void there_is_no_prediction_for_more_than_6_days() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
                 .city(MADRID_CITY_NAME)
