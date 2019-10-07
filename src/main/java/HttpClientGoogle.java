@@ -7,12 +7,13 @@ import java.io.IOException;
 
 public class HttpClientGoogle implements HttpClient {
 
+    private static final HttpRequestFactory REQUEST_FACTORY = new NetHttpTransport().createRequestFactory();
+
     @Override
     public String get(final String url) throws HttpClientException {
 
         try {
-            final HttpRequestFactory requestFactory = new NetHttpTransport().createRequestFactory();
-            final HttpRequest request = requestFactory.buildGetRequest(new GenericUrl(url));
+            final HttpRequest request = REQUEST_FACTORY.buildGetRequest(new GenericUrl(url));
             return request.execute().parseAsString();
         } catch (final IOException exception) {
             throw new HttpClientException(exception);
