@@ -26,7 +26,7 @@ public class WeatherKataTest {
     public void find_the_weather_of_today() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
-                .city(MADRID_CITY_NAME)
+                .cityName(MADRID_CITY_NAME)
                 .build());
 
         assertThat(prediction.get(), is("Heavy Cloud"));
@@ -36,7 +36,7 @@ public class WeatherKataTest {
     public void find_the_weather_of_tomorrow() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
-                .city(MADRID_CITY_NAME)
+                .cityName(MADRID_CITY_NAME)
                 .date(LocalDate.now().plusDays(1))
                 .build());
 
@@ -47,7 +47,7 @@ public class WeatherKataTest {
     public void find_the_wind_of_today() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWind(ForecastRequest.builder()
-                .city(MADRID_CITY_NAME)
+                .cityName(MADRID_CITY_NAME)
                 .build());
 
         assertThat(prediction.get(), is("2.3178431052069253"));
@@ -57,7 +57,7 @@ public class WeatherKataTest {
     public void there_is_no_prediction_for_more_than_6_days() throws ForecastException {
 
         Optional<String> prediction = FORECAST.predictWeather(ForecastRequest.builder()
-                .city(MADRID_CITY_NAME)
+                .cityName(MADRID_CITY_NAME)
                 .date(LocalDate.now().plusDays(6))
                 .build());
 

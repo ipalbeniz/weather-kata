@@ -10,6 +10,6 @@ import java.time.LocalDate;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ForecastRequest {
 
-    private final String city;
+    private final String cityName;
     private final LocalDate date;
 }
