@@ -1,6 +1,10 @@
+package forecast;
+
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.jayway.jsonpath.JsonPath;
+import infrastructure.HttpClient;
+import infrastructure.HttpClientException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +35,7 @@ public class ForecastMetaWeather implements Forecast {
         this(httpClient, DEFAULT_META_WEATHER_API_BASE_URL);
     }
 
-    ForecastMetaWeather(final HttpClient httpClient, final String weatherApiBaseUrl) {
+    public ForecastMetaWeather(final HttpClient httpClient, final String weatherApiBaseUrl) {
         this.weatherApiBaseUrl = weatherApiBaseUrl;
         this.httpClient = httpClient;
     }

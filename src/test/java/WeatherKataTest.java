@@ -1,5 +1,11 @@
 import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import forecast.Forecast;
+import forecast.ForecastException;
+import forecast.ForecastMetaWeather;
+import forecast.ForecastRequest;
+import infrastructure.HttpClient;
+import infrastructure.HttpClientGoogle;
 import org.junit.Rule;
 import org.junit.Test;
 

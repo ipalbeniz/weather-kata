@@ -1,3 +1,5 @@
+package forecast;
+
 import java.util.Optional;
 
 public interface Forecast {

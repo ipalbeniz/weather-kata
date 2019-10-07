@@ -1,4 +1,6 @@
-class ForecastException extends RuntimeException {
+package forecast;
+
+public class ForecastException extends RuntimeException {
     ForecastException(String message, Throwable cause) {
         super(message, cause);
     }
